@@ -4,13 +4,12 @@ import * as BooksAPI from '../BooksAPI'
 
 class Book extends React.Component {
 
-    updateShelf = (shelf) => {
-
+    updateShelf = (event) => {
+        var shelf = event.target.value;
         BooksAPI.update(this.props.book, shelf).then((retorno) => {
             this.props.book.shelf = shelf;
             this.props.onUpdateBooks && this.props.onUpdateBooks(this.props.book);
         });
-
     }
 
     render() {
@@ -20,7 +19,7 @@ class Book extends React.Component {
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.smallThumbnail})` }}></div>
                         <div className="book-shelf-changer">
-                            <ChangeShelf shelf={this.props.book.shelf} onUpdate={this.updateShelf} />
+                            <ChangeShelf shelf={(this.props.book.shelf ? this.props.book.shelf : this.props.shelf)} onUpdate={this.updateShelf} />
                         </div>
                     </div>
                     <div className="book-title">{this.props.book.title}</div>

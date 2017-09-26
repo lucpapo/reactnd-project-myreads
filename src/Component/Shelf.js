@@ -7,7 +7,7 @@ class Shelf extends React.Component {
         title: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
         books: PropTypes.array.isRequired,
-        onUpdateBooks:PropTypes.func
+        onUpdateBooks: PropTypes.func
     }
 
     render() {

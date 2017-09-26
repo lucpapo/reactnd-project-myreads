@@ -11,17 +11,9 @@ class BookCase extends React.Component {
     }
 
     updateBooks = (book) => {
-
-        var datanew = this.state.books;
-        var bookIndex = datanew.findIndex(function (c) {
-            return c.id === book.id;
-        });
-        if (bookIndex !== -1)
-            datanew[bookIndex] = book;
-        else
-            datanew.push(book);
-
-        this.setState({ books: datanew });
+        this.setState((prevState) => ({
+            books: prevState.books.filter((c) => c.id !== book.id).concat(book)
+        }))
     }
 
     componentDidMount() {
